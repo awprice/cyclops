@@ -7,7 +7,7 @@ COPY cmd cmd
 COPY pkg pkg
 RUN make build-linux ENVVAR=$ENVVAR
 
-FROM scratch
+FROM ubuntu:22.04
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /go/src/github.com/atlassian-labs/cyclops/bin/linux/cyclops /bin/cyclops
 COPY --from=builder /go/src/github.com/atlassian-labs/cyclops/bin/linux/kubectl-cycle /bin/kubectl-cycle
